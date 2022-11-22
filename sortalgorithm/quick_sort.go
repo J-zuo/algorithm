@@ -1,33 +1,34 @@
 package sortalgorithm
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
 
-//快排
-//核心思想是什么？时间复杂度和空间复杂度多少？
-//步骤：
-func main() {
-	//定义一[]int切片
-	s := []int{32, 4, -9, 20, 99, 40, 3}
-	a := myQuickSort(s)
-	fmt.Println(a)
+//定义一个含有切片的结构体
+type SqList struct {
+	Slice []int
+	Lenth int
 }
 
-func myQuickSort(s []int) []int {
-	//递归结束条件
-	if len(s) < 2 {
-		return s
+//初始化随机切片
+func InitSlice(lenth int) *SqList {
+	rand.Seed(time.Now().UnixNano())
+	s1 := []int{}
+	fmt.Println(s1 == nil)
+	for i := 0; i < 1; i++ {
+		s1 := append(s1, rand.Intn(1000))
+		fmt.Printf("Before slice = %v, Pointer = %p, len = %d, cap = %d\n", s1, &s1, len(s1), cap(s1))
+		fmt.Printf("Before newSlice = %v, Pointer = %p, len = %d, cap = %d\n", s1, &s1, len(s1), cap(s1))
+		//fmt.Println(len(s), cap(s))
 	}
-	//选择一个基准元素值
-	privot := s[0]
-	left := []int{}
-	right := []int{}
-	//遍历比较之后分区
-	for _, v := range s {
-		if v <= privot {
-			left = append(left, v)
-		} else {
-			right = append(right, v)
-		}
-	}
-	return append(append(myQuickSort(left), privot), myQuickSort(right)...)
+	return &SqList{Slice: s1, Lenth: lenth}
+}
+
+//定义一个方法，交换切片中下标为i,j的值
+func (s *SqList) Swap(i, j int) {
+	temp := s.Slice[i]
+	s.Slice[i] = s.Slice[j]
+	s.Slice[j] = temp
 }
