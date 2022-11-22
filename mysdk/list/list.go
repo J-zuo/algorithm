@@ -1,10 +1,10 @@
-package main
+package list
 
 import "fmt"
 
 // 定义单向链表中的一个结点
 type SLNode struct {
-	data int
+	Data int
 	Next *SLNode
 }
 
@@ -48,11 +48,11 @@ func (l *SList) AddTail(val int) {
 }
 
 //传入原链表的头指针，打印链表
-func (l *SList) printList() {
+func (l *SList) PrintList() {
 	if l.lenth > 0 { //说明链表不为空
 		cur := l.head.Next
 		for {
-			fmt.Printf("%v", cur.data)
+			fmt.Printf("%v", cur.Data)
 			fmt.Printf("->")
 			if cur.Next != nil {
 				cur = cur.Next
@@ -63,27 +63,53 @@ func (l *SList) printList() {
 		}
 
 	} else {
-		fmt.Println(l.lenth, l.head.data, l.head.Next) //初始化链表之后，不做任何操作，打印该链表： 0 0 <nil>
+		fmt.Println(l.lenth, l.head.Data, l.head.Next) //初始化链表之后，不做任何操作，打印该链表： 0 0 <nil>
 	}
 
 }
 
-func main() {
-	fmt.Println("单向链表的基本操作")
+func (l *SList) Head() *SLNode {
+	return l.head
+}
 
-	//实例化一个链表
-	L := InitAttachedHeadNodeList()
+func (l *SList) Reserve() *SLNode {
+	var pre *SLNode
+	cur := l.head.Next
 
-	//模拟打印一下初始化的链表，方面理解
-	//L.printList()
+	for cur != nil {
+		temp := cur.Next
+		cur.Next = pre
+		pre = cur
+		cur = temp
+	}
+	return pre
+}
 
-	//根据元素的下标（从0开始计）来插入结点，分三种情况：
-	//1、头插法其实就是找到下标为0的结点的前驱结点，正好就是我们初始化的头结点。
-	//2、尾插法就是找到长度为下标为lenth的前驱几点（也就是未插入前最后一个元素，下标为lenth-1），加上待插入的结点之后，下标正好是lenth
-	//3、正常的中间插入就是找到下标为n(0<=n<lenth)
-	L.AddHead(12)
-	//L.printList()
-	L.AddHead(8)
-	L.printList()
+//根据首结点打印出链表(方便展示)
 
+func (n *SLNode) PrintBySlNode() {
+	cur := n
+	for {
+		fmt.Printf("%v", cur.Data)
+		fmt.Printf("->")
+		if cur.Next != nil {
+			cur = cur.Next
+		} else {
+			fmt.Println("null")
+			break
+		}
+	}
+}
+
+func (n *SLNode) Reserve() *SLNode {
+	var pre *SLNode
+	cur := n
+	fmt.Println(cur.Data)
+	for cur != nil {
+		tmp := cur.Next
+		cur.Next = pre
+		pre = cur
+		cur = tmp
+	}
+	return pre
 }
