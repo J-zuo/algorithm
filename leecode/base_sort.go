@@ -22,10 +22,17 @@ func main() {
 	//生成一个随机切片
 	sq := sortalgorithm.InitSlice(10)
 	fmt.Println(sq.Slice, sq.Lenth)
-	sq.Swap(1, 2)
+
+	//--------------------冒泡----------------------------
+	//sq.Swap(1, 2)
 	fmt.Println(sq.Slice, sq.Lenth)
 	//sq.Bubble()
-	sq.Bubble2()
-	fmt.Println(sq.Slice, sq.Lenth)
+	//sq.Bubble2()
+	//fmt.Println(sq.Slice, sq.Lenth)
 	//fmt.Println(sq, sq.Slice, sq.Lenth)
+
+	//--------------------快排----------------------------
+	//快排的时间复杂度
+	sq.QuickSort()
+
 }

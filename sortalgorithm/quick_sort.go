@@ -1,9 +1,12 @@
 package sortalgorithm
 
 import (
+	"fmt"
 	"math/rand"
 	"time"
 )
+
+var normal = []int{100, 50, 10, 90, 30, 70, 40, 80, 60, 20} //自定义一个切片
 
 //定义一个含有切片的结构体
 type SqList struct {
@@ -22,7 +25,9 @@ func InitSlice(lenth int) *SqList {
 		//fmt.Printf("Before newSlice = %v, Pointer = %p, len = %d, cap = %d\n", s1, &s1, len(s1), cap(s1))
 		//fmt.Println(len(s), cap(s))
 	}
-	return &SqList{Slice: s1, Lenth: lenth}
+
+	return &SqList{Slice: normal, Lenth: len(normal)}
+	//return &SqList{Slice: s1, Lenth: lenth} //返回程序随机生成的
 }
 
 //定义一个方法，交换切片中下标为i,j的值
@@ -71,4 +76,37 @@ func (s *SqList) Bubble3() {
 			break
 		}
 	}
+}
+
+//快速排序(普通版)
+func (s *SqList) QuickSort() {
+	Qsort(s, 0, s.Lenth-1)
+}
+
+func Qsort(s *SqList, low int, high int) {
+	//确立分区
+	if low < high {
+		pivot := Partition(s, low, high)
+		Qsort(s, low, pivot-1)
+		Qsort(s, pivot+1, high)
+	}
+}
+
+//选定一个位置，使其对应的值比左边都大，比右边都小
+func Partition(s *SqList, low, high int) int {
+	fmt.Println(s, low, high)
+	pivotkey := s.Slice[low] //用第一个值作为枢轴 ,在交换过程中不断变换自己的位置，接下来就是递归
+	fmt.Println(pivotkey)
+	for low < high {
+		for low < high && s.Slice[high] >= pivotkey {
+			high--
+		}
+		s.Swap(low, high)
+		for low < high && s.Slice[low] <= pivotkey {
+			low++
+		}
+		s.Swap(low, high)
+	}
+	fmt.Println(low)
+	return low
 }
