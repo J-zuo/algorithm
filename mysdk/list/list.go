@@ -101,6 +101,8 @@ func (n *SLNode) PrintBySlNode() {
 	}
 }
 
+//翻转链表（使用双指针）
+
 func (n *SLNode) Reserve() *SLNode {
 	var pre *SLNode
 	cur := n
