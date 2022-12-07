@@ -14,6 +14,8 @@ require (
 	github.com/jessevdk/go-flags v1.5.0 // indirect
 	github.com/mattn/go-colorable v0.1.9 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
+	github.com/rabbitmq/amqp091-go v1.5.0 // indirect
+	github.com/streadway/amqp v1.0.0 // indirect
 	github.com/uber/go-torch v0.0.0-20181107071353-86f327cc820e // indirect
 	golang.org/x/sys v0.2.0 // indirect
 )
