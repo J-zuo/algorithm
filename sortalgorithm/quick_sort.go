@@ -17,10 +17,12 @@ type SqList struct {
 //初始化随机切片
 func InitSlice(lenth int) *SqList {
 	rand.Seed(time.Now().UnixNano())
-	s1 := []int{}
+	//var s1 []int
+	s1 := make([]int, 0, 1000) //初始给定容量，可以减少在append过程中间重新扩容带来性能损失
+	//s1 := []int{}
 	//fmt.Println(s1 == nil)
 	for i := 0; i < lenth; i++ {
-		s1 = append(s1, rand.Intn(1000))
+		s1 = append(s1, rand.Intn(1000)) //随机生成
 		//fmt.Printf("Pointer = %p, len = %d, cap = %d\n", &s1, len(s1), cap(s1))
 		//fmt.Printf("Before newSlice = %v, Pointer = %p, len = %d, cap = %d\n", s1, &s1, len(s1), cap(s1))
 		//fmt.Println(len(s), cap(s))
@@ -80,7 +82,7 @@ func (s *SqList) Bubble3() {
 
 //快速排序(普通版)
 func (s *SqList) QuickSort() {
-	Qsort(s, 0, s.Lenth-1)
+	Qsort(s, 0, s.Lenth-1) //0-9,正好是下标位置
 }
 
 func Qsort(s *SqList, low int, high int) {
@@ -104,6 +106,7 @@ func Partition(s *SqList, low, high int) int {
 		s.Swap(low, high)
 		for low < high && s.Slice[low] <= pivotkey {
 			low++
+			fmt.Println("log++", low)
 		}
 		s.Swap(low, high)
 	}

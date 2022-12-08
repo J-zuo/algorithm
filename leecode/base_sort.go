@@ -25,7 +25,7 @@ func main() {
 
 	//--------------------冒泡----------------------------
 	//sq.Swap(1, 2)
-	fmt.Println(sq.Slice, sq.Lenth)
+	//fmt.Println(sq.Slice, sq.Lenth)
 	//sq.Bubble()
 	//sq.Bubble2()
 	//fmt.Println(sq.Slice, sq.Lenth)
