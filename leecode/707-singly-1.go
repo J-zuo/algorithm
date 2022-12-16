@@ -8,7 +8,7 @@ type SLNode struct {
 	Next *SLNode
 }
 
-// 定义单向链表的
+// 定义单向链表
 type SList struct {
 	head  *SLNode //取名很重要，这里取head帮助理解，表示这是一个头结点，数据类型是
 	lenth int
@@ -16,7 +16,7 @@ type SList struct {
 
 //初始化一个带头结点的链表
 func InitAttachedHeadNodeList() *SList {
-	return &SList{&SLNode{}, 0} //链表长度为0,因为头结点不算
+	return &SList{&SLNode{}, 0} //链表长度为0,因为头结点不算，只是为了方便处理
 }
 
 func (l *SList) AddIndex(index int, val int) {
