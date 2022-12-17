@@ -8,7 +8,7 @@ type SLNode struct {
 	Next *SLNode
 }
 
-// 定义单向链表的
+// 定义单向链表
 type SList struct {
 	head  *SLNode //取名很重要，这里取head帮助理解，表示这是一个头结点，数据类型是
 	lenth int
@@ -68,6 +68,7 @@ func (l *SList) PrintList() {
 
 }
 
+//Head 返回头结点
 func (l *SList) Head() *SLNode {
 	return l.head
 }
@@ -85,8 +86,7 @@ func (l *SList) Reserve() *SLNode {
 	return pre
 }
 
-//根据首结点打印出链表(方便展示)
-
+//PrintBySlNode 根据首结点打印出链表(方便展示)
 func (n *SLNode) PrintBySlNode() {
 	cur := n
 	for {
